@@ -279,26 +279,7 @@ Autoridad Judicial (Externo)
 ---
 
 ## 4. Tabla STRIDE Consolidada
-
-| ID | Categoría | Amenaza | Escenario | Impacto | Prob | Severidad | Control Propuesto | Plazo | Responsable |
-|----|-----------|---------|-----------|---------|------|-----------|------------------|-------|-------------|
-| S-1 | Spoofing | Falsificación de Oficio | Correo falso de juzgado | Pérdida cliente + multa SFC | Med | 🔴 | Firma digital + callback verificación | Inmediato | Jurídica |
-| S-2 | Spoofing | Acceso no autorizado BankVisión | Phishing al equipo ops | Acceso a saldos clientes | Med | 🔴 | MFA en BankVisión | 2 sem |Seguridad |
-| T-1 | Tampering | Alteración Base Embargos | Usuario interno modifica datos | Incumplimiento regulatorio | Med-Baja | 🔴 | Migrar a BD + auditoría | 1 mes | Operaciones |
-| T-2 | Tampering | Modificación saldos tránsito | MITM en re red interna | Cálculo erróneo embargo | Baja | 🟡 | TLS 1.2+ + validación integridad | 2 sem | TI Infra |
-| T-3 | Tampering | Alteración montos depósito | Injection SQL en MVP | Pérdida monetaria | Baja | 🔴 | Doble aprobación + validación rango | 3 sem | Tesorería |
-| R-1 | Repudiation | Negación embargo realizado | Sin auditoría sistémica | Disputa legal, multa | Med | 🟡 | Firma electrónica + inmutabilidad logs | 1 mes | Auditoría |
-| R-2 | Repudiation | Negación SLA cumplido | Sin timestamps confiables | Violación SLA, multa | Med-Alta | 🟡 | Timestamp automático MVP | 2 sem | Jurídica |
-| ID-1 | Info Disclosure | Datos personales en correos | Correo sin cifrar interceptado | Violación Ley1581, multa | Med | 🔴 | Cifrado correos + DLP | 1 mes |Seguridad |
-| ID-2 | Info Disclosure | Acceso no autorizado Base Embargos | Archivo compartido abierto | Compromiso datos personales | Med-Alta | 🟡 | RBAC en BD + auditoría lectura | 1 mes | Operaciones |
-| ID-3 | Info Disclosure | Exposición saldos en logs | Log servidor sin seguridad | Espionaje competitivo | Baja-Med | 🟡 | Enmascaramiento logs + restricción acceso | 2 sem | Seguridad |
-| DoS-1 | DoS | Ataque inundación MVP | Botnet GET masivo | Proceso bloqueado, multa SLA | Baja | 🟡 | Rate limiting + WAF | 1 mes | Infra |
-| DoS-2 | DoS | Indisponibilidad BankVisión | Fallo hardware/software | Proceso completamente detenido | Baja-Med | 🔴 | BCP + réplica + monitoreo | 2 meses | TI |
-| DoS-3 | DoS | Saturación correo corp. | Cuenta comprometida phishing | No se reciben notificaciones | Med | 🟡 | SPF/DMARC + anti-spam + cuota | 1 mes | Seguridad |
-| EoP-1 | EoP | Escalada permisos BankVisión | Exploit vuln. / robo cred admin | Alteración sin trazabilidad | Baja-Med | 🔴 | POLP + MFA + auditoría | 1 mes | Seguridad |
-| EoP-2 | EoP | Escalada permisos MVP | Injection SQL / caché mal gestionado | Aprobaciones sin validación | Baja | 🔴 | RBAC en BD + JWT + re-validación | 2 sem | Desarrollo |
-| EoP-3 | EoP | Escalada correo corp. | Password débil / falta MFA | Envío bloqueos/desbloqueos falsos | Med | 🔴 | MFA obligatorio + monitoreo acceso | 2 sem | Seguridad |
-
+![Tabla STRIDE](Stride.png)
 ---
 
 ## 5. Matriz de Riesgos: STRIDE
