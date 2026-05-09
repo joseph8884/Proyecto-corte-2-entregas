@@ -39,39 +39,8 @@ Construir el mapa lógico y físico de la infraestructura tecnológica actual de
 
 ### 2.2 Flujo de Información Actual (Modelo C4 Contexto)
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    SISTEMA ACTUAL (AS-IS)                        │
-└─────────────────────────────────────────────────────────────────┘
+![Modelo C4 Contexto](C4_Contexto.drawio.png)
 
-Usuarios Finales (Personas)
-├── Cumplimiento y Riesgo
-├── Autoridades Judiciales
-└── [Flujos externos]
-
-       │
-       ├─► Área Jurídica (Manual)
-       │   └── Valida inembargabilidad
-       │       └── Calcula con calculadora
-       │       
-       ├─► Operaciones de Embargos (Manual)
-       │   └── Consulta individual en BankVisión
-       │   └── Registra en Excel
-       │   └── Base Embargos (Excel) ◄─── CUELLO DE BOTELLA
-       │
-       ├─► Analista Operativo (Manual)
-       │   └── Replica información de embargos
-       │   └── Repite consultas BankVisión
-       │       
-       └─► Sistema Interno de Productos (BankVisión)
-           └── Datos de clientes y saldos (lectura manual)
-
-Correo Corporativo (Comunicación Inter-áreas)
-└── Notificaciones de Bloqueos/Desbloqueos
-
-Sistema Externo: Banco Agrario (Bajo acoplamiento)
-└── Consulta formularios, emisión de depósitos
-```
 
 ### 2.3 Topología de Red y Almacenamiento
 
@@ -136,40 +105,7 @@ Sistema Externo: Banco Agrario (Bajo acoplamiento)
 
 ### 4.1 Arquitectura de Componentes MVP
 
-```
-┌──────────────────────────────────────────────────────────────────────┐
-│                    MVP AUTOMATIZACIÓN (TO-BE)                         │
-└──────────────────────────────────────────────────────────────────────┘
-
-Entrada de Datos
-└── Módulo de Captura (Input)
-    └── Lee oficios digitalizados
-    └── Estructura datos del oficio
-
-         │
-         ▼
-
-Motor de Procesamiento MVP (Orquestador)
-├── Motor de Reglas (Inembargabilidad)
-│   └── Parametriza límites SFC
-│   └── Calcula automáticamente
-│
-├── Gestor de Integraciones
-│   └── Conecta a BankVisión (Lee saldos)
-│   └── Conecta a Banco Agrario (Fase 2)
-│
-└── Notificador de Tiempos SLA
-    └── Genera alertas antes de 3 días
-    └── Emite notificaciones a stakeholders
-
-         │
-         ▼
-
-Salida Sistémica
-├── Pre-generación de respuestas (output templates)
-├── Dashboard de trazabilidad
-└── Reportes de cumplimiento
-```
+![Modelo C4 Componentes](c4_level3.png)
 
 ### 4.2 Componentes de Infraestructura Mejorada
 
@@ -184,44 +120,7 @@ Salida Sistémica
 
 ### 4.3 Topología de Red Mejorada
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│              INTRANET CORPORATIVA (Segura)                  │
-│                                                              │
-│  ┌──────────────────────────────────────────────────────┐  │
-│  │    MVP APP - Orquestador de Automatización           │  │
-│  │  (Backend: Node.js/Python + API Gateway)             │  │
-│  │  (Frontend: Web/Desktop para Jurídica y Ops)         │  │
-│  └──────────────────────────────────────────────────────┘  │
-│         │                           │                       │
-│         ▼                           ▼                       │
-│   ┌──────────────┐          ┌─────────────────┐            │
-│   │  BankVisión  │          │  Base de Datos  │            │
-│   │   (Core)     │          │  Transaccional  │            │
-│   │   (R/W)      │          │   (SGBD)        │            │
-│   └──────────────┘          │  - Embargos     │            │
-│                              │  - Oficios      │            │
-│                              │  - Depósitos    │            │
-│                              └─────────────────┘            │
-│         │                           │                       │
-│         └──────────────┬────────────┘                       │
-│                        │                                    │
-│              ┌─────────▼────────┐                          │
-│              │  Dashboard +     │                          │
-│              │  Notificador     │                          │
-│              │  (Alertas SLA)   │                          │
-│              └─────────┬────────┘                          │
-│                        │                                    │
-│  Interface web → Jurídica, Operaciones, Coordinador        │
-└─────────────────────────────────────────────────────────────┘
-         │
-         │ (Conexión controlada)
-         ▼
- ┌───────────────────┐
- │ API Banco Agrario │  (Fase 2)
- │ (Tercero - Cloud) │
- └───────────────────┘
-```
+![Modelo Network](network.png)
 
 ---
 
