@@ -41,35 +41,7 @@ La vista de negocio describe el flujo operacional del proceso CF-JUR-PRO-002 tal
 - Comunicación inter-áreas por correo corporativo sin trazabilidad sistémica
 - Integración con Banco Agrario mediante formularios web manuales
 
-```mermaid
-flowchart TD
-    AJ(["🏛️ Autoridad Judicial\n(Externa)"])
-    CO["📋 Coordinador de Oficina\nRecibe y radica oficio"]
-    BD_EXCEL[("📊 Base Embargos\nExcel Compartido")]
-    AUX["🔍 Auxiliar de Operaciones\nConsulta BankVisión"]
-    BV[("🏦 BankVisión\nCore Bancario")]
-    JUR["⚖️ Analista Jurídico\nValida inembargabilidad"]
-    CAP["📬 Captaciones\nNotificada del bloqueo"]
-    TES["💰 Tesorería / Cajero\nEjecuta depósito"]
-    BA(["🏦 Banco Agrario\n(Externo)"])
-
-    AJ -->|"Envía oficio de embargo\n(correo / físico)"| CO
-    CO -->|"Digitaliza y radica\n(correo a Captaciones)"| BD_EXCEL
-    BD_EXCEL -->|"Registro manual"| AUX
-    AUX -->|"Consulta individual\nsaldos por cliente"| BV
-    BV -->|"Responde saldo\ny estado de productos"| AUX
-    AUX -->|"Envía a revisión\n(correo)"| JUR
-    JUR -->|"Calcula límite\ninembargabilidad manual\n(calculadora)"| JUR
-    JUR -->|"Aprueba y notifica\n(correo)"| CAP
-    CAP -->|"Bloquea producto\nen sistema"| TES
-    TES -->|"Completa formulario\nweb manual"| BA
-    BA -->|"Recibe depósito\njudicial"| BA
-
-    style AJ fill:#ff9999,stroke:#cc0000
-    style BA fill:#ff9999,stroke:#cc0000
-    style BD_EXCEL fill:#ffcc00,stroke:#ff8800
-    style BV fill:#99ccff,stroke:#0066cc
-```
+![Diagrama del proceso](/Entrega%207/BPMN%20as-is.png)
 
 ---
 
