@@ -1,12 +1,12 @@
 # 📚 Referencias - Entrega 6: Evaluación de Cumplimiento Normativo
 
-**Taller 6 - Arquitectura Empresarial - Financiera Juriscoop S.A.**
+**Taller 8 - Arquitectura Empresarial - Financiera Juriscoop S.A.**
 
 ---
 
 ## 🔖 Contexto
 
-Entrega 6 del Proyecto Corte 2 - Análisis de cumplimiento normativo del proceso CF-JUR-PRO-002 (Embargo y Desembargo) bajo marcos ISO 27001, Ley 1581/2012, y regulaciones SFC.
+Entrega |6 del Proyecto Corte 2 - Análisis de cumplimiento normativo del proceso CF-JUR-PRO-002 (Embargo y Desembargo) bajo marcos ISO 27001, Ley 1581/2012, y regulaciones SFC.
 
 ---
 

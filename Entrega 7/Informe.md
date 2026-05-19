@@ -3,10 +3,9 @@
 
 ---
 
-> **Equipo:** José Andrés Rodríguez · Abril Catalina Gómez · Bryam Alejandro Torres
+> **Equipo:** Jose Guzman · Juan Abril · Bryam Diaz
 > **Curso:** Arquitectura Empresarial — Universidad de La Sabana
 > **Fecha:** Mayo 2026
-> **Marco de referencia:** TOGAF 9.2 · ArchiMate 3.1 · C4 Model · BPMN 2.0 · STRIDE
 
 ---
 
@@ -22,7 +21,7 @@ La integración abarca cinco dominios de vista: **Negocio**, **Información**, *
 
 ---
 
-### 1.1 Vista de Negocio — Proceso AS-IS (Estado Actual)
+### 1.1 Vista de Negocio (BPMN) — Proceso AS-IS (Estado Actual)
 
 La vista de negocio describe el flujo operacional del proceso CF-JUR-PRO-002 tal como opera actualmente en Financiera Juriscoop S.A. Este proceso involucra cinco áreas organizacionales coordinadas principalmente a través de correo electrónico y consultas manuales en BankVisión, con un registro central en un archivo Excel denominado "Base Embargos".
 
@@ -74,7 +73,7 @@ flowchart TD
 
 ---
 
-### 1.2 Vista de Negocio — Proceso TO-BE (MVP Propuesto)
+### 1.2 Vista de Negocio (BPMN) — Proceso TO-BE (MVP Propuesto)
 
 La arquitectura TO-BE propone un modelo de orquestación sistémica donde el MVP centraliza la gestión del ciclo de vida de cada oficio, automatizando las tareas repetitivas y manteniendo al Analista Jurídico como punto de aprobación human-in-the-loop para las decisiones de mayor criticidad legal.
 
