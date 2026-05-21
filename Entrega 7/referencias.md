@@ -139,12 +139,3 @@ Entrega 7 del Proyecto Corte 2 — Integración de vistas arquitectónicas (Nego
 | **Integración de Vistas** | (3), (4), (5), (16), (17), (18) |
 | **Sector Financiero** | (10), (11), (12), (19), (20), (21) |
 
----
-
-## 📝 Nota sobre Asistencia de IA
-
-Este documento ha sido preparado con asistencia de Claude (Anthropic, 2026) para síntesis de marcos de referencia, estructuración de vistas arquitectónicas y redacción académica, basándose en el contexto real del proyecto con Financiera Juriscoop S.A.
-
----
-
-*Este archivo forma parte de la entrega académica del curso Arquitectura Empresarial — Universidad de La Sabana, Mayo 2026.*

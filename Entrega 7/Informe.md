@@ -57,41 +57,7 @@ La arquitectura TO-BE propone un modelo de orquestación sistémica donde el MVP
 - **Base de Datos Transaccional:** Sustituye el Excel con auditoría completa e integridad referencial
 - **Dashboard Operacional:** Visibilidad en tiempo real del estado de todos los casos activos
 
-```mermaid
-flowchart TD
-    AJ(["🏛️ Autoridad Judicial\n(Externa)"])
-    CAP_MOD["📥 Módulo de Captura\nIngesta estructurada + OCR"]
-    MW["🔗 Middleware BankVisión\nConsulta automática masiva"]
-    BV[("🏦 BankVisión\nCore Bancario")]
-    MOTOR["⚙️ Motor de Inembargabilidad\nReglas SFC parametrizadas"]
-    BD[("🗄️ Base de Datos\nTransaccional + Auditoría")]
-    NOTIF["⏰ Notificador SLA\nAlertas 72h / 48h / 24h"]
-    JUR["⚖️ Analista Jurídico\nAprobación final (human-in-the-loop)"]
-    DASH["📊 Dashboard Operacional\nKPIs en tiempo real"]
-    BA(["🏦 Banco Agrario\n(Integración futura)"])
-
-    AJ -->|"Oficio ingresa al sistema\n(canal estructurado)"| CAP_MOD
-    CAP_MOD -->|"Extrae datos clave\ny registra en BD"| BD
-    BD -->|"Solicita validación\nautomática de saldos"| MW
-    MW -->|"Consulta masiva\nautomatizada"| BV
-    BV -->|"Retorna saldos\ny estados de productos"| MW
-    MW -->|"Saldos validados"| MOTOR
-    MOTOR -->|"Calcula monto embargable\nsegún Circular SFC 022/2014"| BD
-    BD -->|"Caso pre-procesado\nlisto para revisión"| JUR
-    JUR -->|"Aprueba o rechaza\ncon firma electrónica"| BD
-    BD -->|"Alerta si SLA\ncerca de vencer"| NOTIF
-    NOTIF -->|"Notificación\nal responsable"| JUR
-    BD -->|"Genera respuesta\noficial al juzgado"| AJ
-    BD -->|"Instrucción de\ndepósito judicial"| BA
-    BD -.->|"Visibilidad\nen tiempo real"| DASH
-
-    style AJ fill:#ff9999,stroke:#cc0000
-    style BA fill:#ff9999,stroke:#cc0000
-    style BD fill:#99ff99,stroke:#009900
-    style BV fill:#99ccff,stroke:#0066cc
-    style MOTOR fill:#cc99ff,stroke:#6600cc
-```
-
+![Diagrama del proceso to be](/Entrega%207/bpmn%20tobe.jpeg)
 ---
 
 ### 1.3 Vista de Información — Modelo de Datos (ERD)
@@ -196,30 +162,7 @@ La vista de aplicaciones en el nivel de contexto (C4 Level 1) posiciona el siste
 - **Banco Agrario:** Sistema externo receptor de los depósitos judiciales
 - **Correo Corporativo:** Canal de comunicación (a reemplazar progresivamente)
 
-```mermaid
-C4Context
-    title Contexto del Sistema MVP — Gestión de Embargos Juriscoop
-
-    Person(anal_jur, "Analista Jurídico", "Valida inembargabilidad y aprueba respuestas a oficios")
-    Person(aux_ops, "Auxiliar de Operaciones", "Supervisa el procesamiento de oficios en el sistema")
-    Person(coord, "Coordinador de Oficina", "Ingresa oficios judiciales al sistema MVP")
-
-    System(mvp, "MVP Gestión de Embargos", "Centraliza el ciclo de vida del oficio: captura, validación, cálculo, alerta SLA y respuesta")
-
-    System_Ext(bv, "BankVisión (Core Bancario)", "Sistema on-premise que provee saldos y estado de productos financieros de los clientes")
-    System_Ext(ba, "Banco Agrario", "Receptor externo de los depósitos judiciales")
-    System_Ext(correo, "Correo Corporativo", "Canal de comunicación transitorio (a reemplazar)")
-    System_Ext(juzgado, "Autoridades Judiciales", "Emiten oficios de embargo y reciben respuestas")
-
-    Rel(juzgado, mvp, "Envía oficio de embargo", "Email estructurado / Canal digital")
-    Rel(coord, mvp, "Registra y radica oficios", "Interfaz web")
-    Rel(aux_ops, mvp, "Supervisa procesamiento", "Dashboard")
-    Rel(anal_jur, mvp, "Aprueba respuesta judicial", "Interfaz web")
-    Rel(mvp, bv, "Consulta automática de saldos", "Middleware / RPA interno")
-    Rel(mvp, ba, "Instrucción de depósito judicial", "API / formulario")
-    Rel(mvp, juzgado, "Envía respuesta oficial", "Email certificado")
-    Rel(mvp, correo, "Notificaciones internas (temporal)", "SMTP")
-```
+![Diagrama de c4 contexto](/Entrega%207/c4%20contexto.jpeg)
 
 ---
 
@@ -239,57 +182,7 @@ En el nivel de componentes (C4 Level 3), se descompone el sistema MVP en sus mó
 | **Dashboard Operacional** | Panel de control con KPIs en tiempo real | Frontend web con gráficas |
 | **API Gateway** | Punto de entrada unificado con autenticación y control de acceso | Kong / Nginx |
 
-```mermaid
-flowchart TB
-    subgraph DMZ["🛡️ DMZ — Capa de Acceso"]
-        GW["🔀 API Gateway\nAutenticación + Rate Limiting"]
-        WAF["🧱 WAF\nWeb Application Firewall"]
-    end
-
-    subgraph APP["⚙️ Zona Aplicaciones — Intranet"]
-        CAP["📥 Módulo de Captura\nIngesta de Oficios"]
-        MOTOR["🔢 Motor de Inembargabilidad\nMicroservicio REST"]
-        NOTIF["⏰ Notificador SLA\nCola de mensajes"]
-        DASH["📊 Dashboard Operacional\nFrontend Web"]
-    end
-
-    subgraph DATA["🗄️ Zona de Datos — Intranet Segura"]
-        BD[("BD Transaccional\nPostgreSQL + Auditoría")]
-        BV[("BankVisión\nCore Bancario")]
-        MW["🔗 Middleware BankVisión\nRPA / API Adapter"]
-        BACKUP[("Backup Automático\nRPO < 1h")]
-    end
-
-    subgraph CLOUD["☁️ Zona Cloud (Sin datos sensibles)"]
-        MON["📡 Monitoreo Externo\nDataDog / New Relic"]
-        PUSH["📲 Notificaciones Push\nAWS SNS / Azure"]
-    end
-
-    USERS(["👤 Usuarios Internos\nAnalista Jurídico / Auxiliar / Coordinador"])
-    JUZGADO(["🏛️ Autoridades Judiciales"])
-    BA(["🏦 Banco Agrario"])
-
-    USERS -->|"HTTPS + MFA"| WAF
-    JUZGADO -->|"Oficio digital"| WAF
-    WAF --> GW
-    GW --> CAP
-    GW --> DASH
-    CAP --> BD
-    BD --> MOTOR
-    MOTOR --> BD
-    BD --> MW
-    MW <-->|"Intranet TLS"| BV
-    BD --> NOTIF
-    NOTIF --> PUSH
-    BD -.->|"VPN"| MON
-    BD --> BA
-    BD --> BACKUP
-
-    style DMZ fill:#ffeecc,stroke:#ff8800
-    style APP fill:#eeffee,stroke:#009900
-    style DATA fill:#eeeeff,stroke:#0000cc
-    style CLOUD fill:#eef5ff,stroke:#3366ff
-```
+![c4 mvp](/Entrega%207/c4%20mvp.jpeg)
 
 ---
 

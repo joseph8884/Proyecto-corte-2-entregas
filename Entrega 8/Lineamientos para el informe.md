@@ -19,9 +19,9 @@ Durante la presentación se evaluarán:
 
 ---
 
-## 🧪 Parte 1: Trabajo en Clase
+## 🧪 Parte 1:
 
-Durante la clase se espera que el equipo:
+el equipo:
 
 - Prepare una presentación ejecutiva de máximo 10 minutos.
 - Organice una narrativa clara que conecte problema → análisis → solución.
@@ -30,9 +30,9 @@ Durante la clase se espera que el equipo:
 
 ---
 
-## 🧠 Parte 2: Entrega Final
+## 🧠 Parte 2: Entrega
 
-Después de la presentación, el equipo debe:
+Después, el equipo debe:
 
 - Ajustar la solución si recibió retroalimentación crítica.
 - Consolidar todas las vistas y modelos en una carpeta final.
