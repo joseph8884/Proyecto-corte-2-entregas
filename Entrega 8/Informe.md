@@ -3,7 +3,7 @@
 
 ---
 
-> **Equipo:** José Andrés Rodríguez · Abril Catalina Gómez · Bryam Alejandro Torres
+> **Equipo:** Jose Guzman · Juan David Abril · Bryam Diaz
 > **Curso:** Arquitectura Empresarial — Universidad de La Sabana
 > **Fecha:** Mayo 2026
 > **Clasificación:** Uso Académico — Confidencial
@@ -195,15 +195,15 @@ La documentación completa de las vistas arquitectónicas de la solución se enc
 
 ## 7. Reflexiones Individuales
 
-### 7.1 José Andrés Rodríguez
+### 7.1 José Guzman
 
 El desarrollo de este proyecto ha representado una transformación en la manera en que comprendo el rol de la tecnología dentro de una organización. Antes de abordar la arquitectura empresarial como disciplina, tendía a pensar en los sistemas de información como soluciones técnicas a problemas técnicos. Trabajar con el caso de Juriscoop y el proceso CF-JUR-PRO-002 me permitió entender que la tecnología es, fundamentalmente, una respuesta a una necesidad organizacional con implicaciones regulatorias, operacionales y humanas. El ejercicio de construir las vistas de infraestructura y aplicaciones me resultó especialmente revelador: cada decisión de diseño —dónde ubicar el servidor, cómo integrar con BankVisión, qué motor de base de datos usar— no era una decisión técnica aislada, sino una decisión con consecuencias en la seguridad de los datos de los clientes, en el cumplimiento de la SFC y en la sostenibilidad operacional del proceso. Llevo de este proceso el aprendizaje de que documentar una arquitectura es, en esencia, documentar las razones de cada decisión: el diagrama no es el objetivo; es el lenguaje mediante el cual se hace explícito el razonamiento que de otro modo permanecería tácito.
 
-### 7.2 Abril Catalina Gómez
+### 7.2 Juan David Abril
 
 Mi mayor aprendizaje en este proyecto fue comprender la dimensión normativa de la arquitectura empresarial. Cuando empezamos a revisar el proceso de Juriscoop, la cantidad de regulaciones aplicables —Ley 1581, Código General del Proceso, Circulares de la SFC, ISO 27001— me pareció abrumadora. Con el tiempo, sin embargo, fui entendiendo que esas regulaciones no son restricciones externas al diseño arquitectónico: son requisitos funcionales del sistema. El SLA de 3 días hábiles no es una opción de diseño; es una obligación legal que define la urgencia del Notificador SLA. El cálculo de inembargabilidad no es una funcionalidad adicional; es el core del servicio que Juriscoop debe prestar ante el sistema judicial. Esta comprensión cambió completamente mi lectura de los checklists normativos de la Entrega 6: detrás de cada brecha identificada no había un problema de cumplimiento burocrático, sino una vulnerabilidad real en la experiencia de un cliente en situación de vulnerabilidad financiera. Ese reconocimiento le dio a cada decisión de diseño un peso que no había tenido antes.
 
-### 7.3 Bryam Alejandro Torres
+### 7.3 Bryam Diaz
 
 El análisis de seguridad con STRIDE fue el componente del proyecto que más impacto tuvo en mi formación. Antes de este ejercicio, asociaba la seguridad de sistemas principalmente con firewalls y antivirus. El modelo STRIDE me mostró que la seguridad es, ante todo, una disciplina de razonamiento sistemático sobre las formas en que un sistema puede fallar: no solo ante atacantes externos, sino ante errores internos, comportamientos inesperados de los usuarios y decisiones de diseño inadecuadas. Aplicar STRIDE al proceso de Juriscoop me permitió ver que la mayor amenaza no era necesariamente un ciberataque sofisticado, sino algo tan cotidiano como un archivo Excel sin control de acceso o un correo electrónico con información de clientes enviado a la dirección equivocada. El concepto de Zero Trust me pareció especialmente valioso porque sintetiza una postura de diseño: no asumir que el contexto es seguro, sino verificar continuamente. Esa postura, aplicada no solo a sistemas sino al diseño de procesos, es una de las ideas más prácticas que me llevo de esta materia.
 
